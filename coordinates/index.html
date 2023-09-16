@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mouse Coordinates</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+      #coordinate-label {
+        position: fixed; /* Changed from absolute to fixed */
+        background-color: lightgray;
+        padding: 5px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="coordinate-label"></div>
+
+    <script>
+      const label = document.getElementById("coordinate-label");
+
+      // Function to update the label and its position
+      function updateLabel(x, y) {
+        label.style.left = `${x + 10}px`;
+        label.style.top = `${y + 10}px`;
+        label.innerHTML = `(${x}, ${y})`;
+        label.style.display = "block";
+      }
+
+      // Add mousemove event listener
+      document.addEventListener("mousemove", (e) => {
+        const x = e.pageX; // Changed from e.clientX to e.pageX
+        const y = e.pageY; // Changed from e.clientY to e.pageY
+        updateLabel(x, y);
+      });
+    </script>
+  </body>
+</html>
